@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+	
+	<!-- Root Context: defines shared resources visible to all other web components -->
+
+	<bean name="UserDAO" class="com.softtek.academy.dao.UserRepositoryImpl" autowire = "constructor"> </bean>
+	
+	<bean name="CartDAO" class="com.softtek.academy.dao.CartRepositoryImpl" autowire = "constructor"> </bean>
+	
+	<bean name="UserRolDAO" class="com.softtek.academy.dao.UserRoleRepositoryImpl" autowire = "constructor"> </bean>
+	
+	<bean name="ShipToDAO" class="com.softtek.academy.dao.ShipToRepositoryImpl" autowire ="constructor"> </bean>
+
+	<bean name="StatusDAO" class="com.softtek.academy.dao.StatusRepositoryImpl">
+		<constructor-arg ref="dataSource"></constructor-arg>
+		<property name="statusType" value="CART"></property>
+	</bean>
+	
+	
+	<bean name="dataSource"
+		class="org.springframework.jdbc.datasource.DriverManagerDataSource">
+		<property name="driverClassName" value="org.gjt.mm.mysql.Driver" />
+		<property name="url" value="jdbc:mysql://localhost:3306/ecomDB" />
+		<property name="username" value="jballesteros" />
+		<property name="password" value="jballesteros" />
+	</bean>
+		
+</beans>
+
